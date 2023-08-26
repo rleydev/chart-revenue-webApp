@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const apiUrl = "http://shelter.bmsys.net:58600/api/dashboard/cash/";
-const startDate = "2023-08-20";
+const startDate = "2023-08-21";
 const endDate = "2023-08-23";
 
 export const fetchData = async (range) => {

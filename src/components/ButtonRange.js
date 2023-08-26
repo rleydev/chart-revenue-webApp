@@ -1,5 +1,7 @@
 import { Button } from "@mui/material"
 import { styled } from '@mui/material/styles';
+import { useEffect } from "react";
+import { useActions } from "../services/store/useAction";
 
 
 const RangeCustom = styled(Button)({
@@ -22,19 +24,37 @@ const RangeCustom = styled(Button)({
       boxShadow: 'none',
     },
     '&:active': {
+      backgroundColor: '#0069d9',
+      borderColor: '#0062cc',
       boxShadow: 'none',
-      backgroundColor: '#0062cc',
-      borderColor: '#005cbf',
     },
     '&:focus': {
       boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
     },
+    '&:disabled' : {
+      backgroundColor: '#0069d9',
+      borderColor: '#0062cc',
+      boxShadow: 'none',
+      color: 'white',
+    },
   });
 
-const ButtonRange = ({name}) => {
+const ButtonRange = ({name, state}) => {
+
+  const isDisabled = name === state;
+  const {changeCurrentRange} = useActions()
+
+  const clickButton = () => {
+    changeCurrentRange(name)
+    console.log(name)
+  }
+
+  useEffect(() => {
+    console.log(isDisabled + name)
+  }, [])
 
     return (
-        <RangeCustom variant='outline'>
+        <RangeCustom disabled={isDisabled} onClick={() => clickButton()} variant='outline'>
             {name}
         </RangeCustom>
     )

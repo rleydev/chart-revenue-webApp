@@ -1,10 +1,12 @@
 import { bindActionCreators } from "@reduxjs/toolkit";
 import { useMemo } from "react";
 import { useDispatch } from "react-redux";
-import * as dataActions from './actions/data.action'
+import * as dataActions from './actions/data.action';
+import {actions as rangeActions } from './slices/range.slice'
 
 const rootActions = {
-    ...dataActions
+    ...dataActions,
+    ...rangeActions
 }
 
 

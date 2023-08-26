@@ -5,11 +5,11 @@ const ErrorAlert = () => {
     return (
         <Box sx={{
             backgroundColor: '#3B4758',
-            margin: '20px',
             height: "300px",
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            borderRadius: '20px'
         }}>
             <Alert severity="error" sx={{backgroundColor: '#1D232C', color: 'white',
                                     width: '300px',
@@ -19,7 +19,7 @@ const ErrorAlert = () => {
                                     justifyContent: 'center',
                                     borderRadius: '10px'
                                     }}>
-                Data can't be loaded <strong>Network Error</strong>
+                Data can't be loaded <strong style={{color: 'red'}}>Network Error</strong>
             </Alert>
         </Box>
     )

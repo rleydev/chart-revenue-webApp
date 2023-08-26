@@ -1,6 +1,5 @@
 import {Typography } from "@mui/material"
 import { createTheme, ThemeProvider } from '@mui/material';
-import { useSelector } from "react-redux";
 
 
 const theme = createTheme({

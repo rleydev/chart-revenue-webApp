@@ -7,12 +7,18 @@ import ErrorAlert from "../components/ErrorAlert"
 import BarChartTable from "../components/BarChartTable"
 import { useSelector } from "react-redux"
 import ButtonRangeContainer from "../components/ButtonRangeContainer"
+import NoDataRange from "../components/NoDataRange"
 
 
 const Main = () => {
 
-    const {sumValuesH, datesValuesH, isLoading, error} = useSelector((state => state))
+    const {sumValuesH, datesValuesH,
+        datesValuesD, datesValuesW,
+        datesValuesMS, sumValuesD, sumValuesW, sumValuesMS,
+        isLoading, error} = useSelector((state => state.dataReducer))
     const { getData } = useActions()
+
+    const {currentRange} = useSelector(state => state.rangeReducer)
 
 
     const [chartState, setChartState] = useState('h')
@@ -31,7 +37,7 @@ const Main = () => {
                 sx={{
                 backgroundColor: "#1D232C",
                 height: "70px",
-                margin: "20px",
+                margin: '20px',
                 borderRadius: "10px",
                 display: "flex",
                 alignItems: "center",
@@ -42,20 +48,22 @@ const Main = () => {
             </Box >
             <ButtonRangeContainer />
             <Box sx={{margin: '20px', 
-                backgroundColor: '#1D232C'}}>
+                backgroundColor: '#1D232C',
+                borderRadius: '10px'
+                }}>
                 { isLoading === true ? (
                     <Loader />
                 ) : isLoading === false && error ? (
                     <ErrorAlert />
-                ) : chartState === 'h' && datesValuesH ? (
-                    <BarChartTable dates={datesValuesH} values={sumValuesH}/>
-                ) : chartState === 'd' ? (
-                    <BarChartTable />
-                ) : chartState === 'w' ? (
-                    <BarChartTable />
-                ) : chartState === 'm' ? (
-                    <BarChartTable />
-                ) : (<></>)
+                ) : currentRange === 'Hourly' && (datesValuesH.length > 0) ? (
+                    <BarChartTable dates={datesValuesH} values={sumValuesH} type={currentRange}/>
+                ) : currentRange === 'Daily' && (datesValuesD.length > 0) ? (
+                    <BarChartTable dates={datesValuesD} values={sumValuesD}/>
+                ) : currentRange === 'Weekly' && (datesValuesW.length > 0) ? (
+                    <BarChartTable dates={datesValuesW} values={sumValuesW}/>
+                ) : currentRange === 'Monthly' && (datesValuesMS.length > 0) ? (
+                    <BarChartTable dates={datesValuesMS} values={sumValuesMS}/>
+                ) : (<NoDataRange />)
                 }
             </Box>
             
