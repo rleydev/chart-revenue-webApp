@@ -1,5 +1,7 @@
-import { Box, Typography } from "@mui/material"
+import {Typography } from "@mui/material"
 import { createTheme, ThemeProvider } from '@mui/material';
+import { useSelector } from "react-redux";
+
 
 const theme = createTheme({
   typography: {
@@ -7,15 +9,14 @@ const theme = createTheme({
       'Montesserat',
       'regular',
     ].join(','),
-    fontSize: 30,
-    fontWeight: 'bold',
   },});
 
 const Title = () => {
+
     return (
         <ThemeProvider theme={theme}>
-            <Typography variant="h1" >
-                HHHHHD:SK:FLK
+            <Typography variant="h1" fontSize='30px' fontWeight={'bold'} color={'white'}>
+                Выручка
             </Typography>
         </ThemeProvider>
     )
