@@ -1,4 +1,12 @@
-# Getting Started with Create React App
+# Chart Revenuew React Web-App
+
+## About:
+- React.js
+- Material UI
+- Redux Toolkit
+- Chart.js
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
